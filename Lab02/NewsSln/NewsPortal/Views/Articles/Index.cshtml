@@ -1,0 +1,31 @@
+@model NewsPortal.Models.ViewModels.ArticleListViewModel
+
+<h2 class="mb-3">Latest News @if (!string.IsNullOrEmpty(Model.CurrentCategory)) { <small class="text-muted">(@Model.CurrentCategory)</small> }</h2>
+
+@foreach (var a in Model.Articles)
+{
+<div class="card mb-3">
+    <div class="card-body">
+        <h4 class="card-title mb-1">@a.Title</h4>
+        <div class="text-muted mb-2">
+            @a.Author • @a.PublishedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm") • @a.Category
+        </div>
+        <p class="card-text">@a.Body.Substring(0, Math.Min(200, a.Body.Length))@((a.Body.Length > 200) ? "..." : "")</p>
+        <a class="btn btn-sm btn-primary" href="#">Read more</a>
+    </div>
+</div>
+}
+
+@if (Model.PagingInfo.TotalPages > 1)
+{
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
+            {
+        <li class="page-item @(i == Model.PagingInfo.CurrentPage ? "active" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = i, category = Model.CurrentCategory })">@i</a>
+        </li>
+            }
+    </ul>
+</nav>
+}
