@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NewsPortal</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            padding-top: 1rem;
+        }
+
+        .container {
+            max-width: 960px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <aside class="col-12 col-md-3 mb-3">
+                @await Component.InvokeAsync("NavigationMenu")
+                <hr class="my-3" />
+                @await Component.InvokeAsync("RecentlyViewed")
+            </aside>
+
+            <main class="col-12 col-md-9">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
