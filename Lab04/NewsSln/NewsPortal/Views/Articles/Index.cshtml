@@ -1,0 +1,31 @@
+@model NewsPortal.Models.ViewModels.ArticleListViewModel
+
+<h2 class="mb-3">
+    Latest News
+    @if (!string.IsNullOrEmpty(Model.CurrentCategory))
+  { <small class="text-muted">(@Model.CurrentCategory)</small> }
+</h2>
+
+
+@foreach (var a in Model.Articles)
+{
+<partial name="_ArticleSummary" model="a" />
+}
+
+@if (Model.PagingInfo.TotalPages > 1)
+{
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
+      {
+        <li class="page-item @(i == Model.PagingInfo.CurrentPage ? "active" : "")">
+            <a class="page-link"
+               asp-controller="Articles"
+               asp-action="Index"
+               asp-route-page="@i"
+               asp-route-category="@Model.CurrentCategory">@i</a>
+        </li>
+      }
+    </ul>
+</nav>
+}
