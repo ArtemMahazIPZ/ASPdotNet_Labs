@@ -1,13 +1,13 @@
-@model IEnumerable<string>
-    @{
+@model IEnumerable<NewsPortal.Models.Category>
+@{
     var active = (string?)ViewBag.SelectedCategory;
-    }
-    <div class="list-group">
-        <a class="list-group-item list-group-item-action @(string.IsNullOrEmpty(active) ? "active" : "")"
-           asp-controller="Articles" asp-action="Index">All</a>
-        @foreach (var c in Model)
+}
+<div class="list-group">
+    <a class="list-group-item list-group-item-action @(string.IsNullOrEmpty(active) ? "active" : string.Empty)"
+       asp-controller="Articles" asp-action="Index">All</a>
+    @foreach (var c in Model)
     {
-        <a class="list-group-item list-group-item-action @(active == c ? "active" : "")"
-           asp-controller="Articles" asp-action="Index" asp-route-category="@c">@c</a>
+        <a class="list-group-item list-group-item-action @(active == c.Name ? "active" : string.Empty)"
+           asp-controller="Articles" asp-action="Index" asp-route-category="@c.Name">@c.Name</a>
     }
-    </div>
+</div>

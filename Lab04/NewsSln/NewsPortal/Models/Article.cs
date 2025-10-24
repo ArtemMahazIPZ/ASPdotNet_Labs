@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsPortal.Models
 {
@@ -18,8 +17,11 @@ namespace NewsPortal.Models
 
         public DateTime PublishedAt { get; set; } = DateTime.UtcNow;
 
-        [MaxLength(100)]
-        public string? Category { get; set; }
+        [Required]
+        [Display(Name = "Category")]
+        public long CategoryId { get; set; }
+
+        public Category? Category { get; set; }
 
         [MaxLength(300)]
         public string? CoverImageUrl { get; set; }
