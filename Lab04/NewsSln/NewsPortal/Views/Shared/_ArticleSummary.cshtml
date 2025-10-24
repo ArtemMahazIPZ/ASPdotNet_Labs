@@ -4,7 +4,7 @@
   <div class="card-body">
     <h4 class="card-title mb-1">@Model.Title</h4>
     <div class="text-muted mb-2">
-      @Model.Author • @Model.PublishedAt.ToLocalTime():yyyy-MM-dd HH:mm • @Model.Category
+      @Model.Author @Model.PublishedAt.ToLocalTime():yyyy-MM-dd HH:mm @Model.Category?.Name
     </div>
     <p class="card-text">
       @Model.Body.Substring(0, Math.Min(200, Model.Body.Length))@((Model.Body.Length > 200) ? "..." : "")

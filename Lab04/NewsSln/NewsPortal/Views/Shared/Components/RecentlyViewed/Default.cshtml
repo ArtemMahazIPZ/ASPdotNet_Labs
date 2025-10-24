@@ -13,7 +13,7 @@ else
             <a asp-controller="Articles" asp-action="Details" asp-route-id="@a.ArticleID">
                 @a.Title
             </a>
-            <small class="text-muted d-block">@a.Category</small>
+            <small class="text-muted d-block">@a.Category?.Name</small>
         </li>
     }
     </ul>

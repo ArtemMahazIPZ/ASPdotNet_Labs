@@ -1,0 +1,36 @@
+@model NewsPortal.Models.ViewModels.ArticleFormViewModel
+@using Microsoft.AspNetCore.Mvc.Rendering
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="mb-3">
+    <label asp-for="Article.Title" class="form-label"></label>
+    <input asp-for="Article.Title" class="form-control" />
+    <span asp-validation-for="Article.Title" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Article.Author" class="form-label"></label>
+    <input asp-for="Article.Author" class="form-control" />
+    <span asp-validation-for="Article.Author" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Article.PublishedAt" class="form-label"></label>
+    <input asp-for="Article.PublishedAt" class="form-control" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+    <span asp-validation-for="Article.PublishedAt" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Article.CategoryId" class="form-label"></label>
+    <select asp-for="Article.CategoryId" class="form-select" asp-items="new SelectList(Model.Categories, nameof(NewsPortal.Models.Category.CategoryId), nameof(NewsPortal.Models.Category.Name))">
+        <option value="">-- Select category --</option>
+    </select>
+    <span asp-validation-for="Article.CategoryId" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Article.CoverImageUrl" class="form-label"></label>
+    <input asp-for="Article.CoverImageUrl" class="form-control" />
+    <span asp-validation-for="Article.CoverImageUrl" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Article.Body" class="form-label"></label>
+    <textarea asp-for="Article.Body" class="form-control" rows="6"></textarea>
+    <span asp-validation-for="Article.Body" class="text-danger"></span>
+</div>

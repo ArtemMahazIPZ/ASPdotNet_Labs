@@ -1,0 +1,13 @@
+@model NewsPortal.Models.ViewModels.ArticleFormViewModel
+
+@{
+    ViewData["Title"] = "Create Article";
+}
+
+<h2 class="mb-3">Create Article</h2>
+
+<form asp-action="Create" method="post">
+    <partial name="_ArticleFormFields" model="Model" />
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

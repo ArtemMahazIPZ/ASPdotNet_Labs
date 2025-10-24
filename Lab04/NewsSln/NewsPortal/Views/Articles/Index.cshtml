@@ -1,10 +1,15 @@
 @model NewsPortal.Models.ViewModels.ArticleListViewModel
 
-<h2 class="mb-3">
-    Latest News
-    @if (!string.IsNullOrEmpty(Model.CurrentCategory))
-  { <small class="text-muted">(@Model.CurrentCategory)</small> }
-</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">
+        Latest News
+        @if (!string.IsNullOrEmpty(Model.CurrentCategory))
+        {
+            <small class="text-muted">(@Model.CurrentCategory)</small>
+        }
+    </h2>
+    <a asp-action="Create" class="btn btn-primary">Create Article</a>
+</div>
 
 
 @foreach (var a in Model.Articles)

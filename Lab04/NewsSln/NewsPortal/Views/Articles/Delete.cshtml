@@ -1,0 +1,26 @@
+@model NewsPortal.Models.Article
+
+@{
+    ViewData["Title"] = "Delete Article";
+}
+
+<h2 class="mb-3">Delete Article</h2>
+
+<div class="alert alert-warning">
+    <p>Are you sure you want to delete the article <strong>@Model.Title</strong>?</p>
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Author</dt>
+    <dd class="col-sm-9">@Model.Author</dd>
+    <dt class="col-sm-3">Published</dt>
+    <dd class="col-sm-9">@Model.PublishedAt.ToLocalTime():yyyy-MM-dd HH:mm</dd>
+    <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9">@Model.Category?.Name</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ArticleID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Details" asp-route-id="@Model.ArticleID" class="btn btn-secondary ms-2">Cancel</a>
+</form>

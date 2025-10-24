@@ -1,0 +1,41 @@
+@model NewsPortal.Models.Category
+
+@{
+    ViewData["Title"] = $"Category: {Model.Name}";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">@Model.Name</h2>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-sm btn-outline-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.CategoryId" class="btn btn-sm btn-outline-danger ms-2">Delete</a>
+    </div>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.Description))
+{
+    <p class="text-muted">@Model.Description</p>
+}
+
+<h4>Articles</h4>
+@if (!Model.Articles.Any())
+{
+    <p class="text-muted">No articles have been assigned to this category yet.</p>
+}
+else
+{
+    <ul class="list-group mb-3">
+        @foreach (var article in Model.Articles)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <a asp-controller="Articles" asp-action="Details" asp-route-id="@article.ArticleID">@article.Title</a>
+                    <small class="text-muted d-block">@article.PublishedAt.ToLocalTime():yyyy-MM-dd HH:mm</small>
+                </span>
+                <a asp-controller="Articles" asp-action="Edit" asp-route-id="@article.ArticleID" class="btn btn-sm btn-outline-primary">Edit</a>
+            </li>
+        }
+    </ul>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Back to list</a>

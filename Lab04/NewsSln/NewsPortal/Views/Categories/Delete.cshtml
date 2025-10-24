@@ -1,0 +1,31 @@
+@model NewsPortal.Models.Category
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<h2 class="mb-3">Delete Category</h2>
+
+<div class="alert alert-warning">
+    <p>Are you sure you want to delete the category <strong>@Model.Name</strong>?</p>
+</div>
+
+@if (Model.Articles.Any())
+{
+    <div class="alert alert-danger">
+        <p>The category still contains the following articles:</p>
+        <ul>
+            @foreach (var article in Model.Articles)
+            {
+                <li>@article.Title (@article.PublishedAt.ToLocalTime():yyyy-MM-dd)</li>
+            }
+        </ul>
+    </div>
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="CategoryId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit" class="btn btn-danger" @(Model.Articles.Any() ? "disabled" : string.Empty)>Delete</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>
