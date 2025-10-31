@@ -338,3 +338,4 @@ E:\ASP.NET_Labs\Lab03\NewsSln\NewsPortal\obj\Debug\net8.0\rjsmcshtml.dswa.cache.
 E:\ASP.NET_Labs\Lab03\NewsSln\NewsPortal\obj\Debug\net8.0\staticwebassets.build.json.cache
 E:\ASP.NET_Labs\Lab03\NewsSln\NewsPortal\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 E:\ASP.NET_Labs\Lab03\NewsSln\NewsPortal\obj\Debug\net8.0\swae.build.ex.cache
+E:\ASP.NET_Labs\Lab03\NewsSln\NewsPortal\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

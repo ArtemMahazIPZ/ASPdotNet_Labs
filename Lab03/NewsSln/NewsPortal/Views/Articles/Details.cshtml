@@ -1,11 +1,18 @@
 @model NewsPortal.Models.Article
 
 <h2 class="mb-2">@Model.Title</h2>
+
 <div class="text-muted mb-3">
-    @Model.Author Х @Model.PublishedAt.ToLocalTime():yyyy-MM-dd HH:mm Х @Model.Category
+    @Model.Author
+    Х @Model.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+    Х @Model.Category
 </div>
+
 @if (!string.IsNullOrWhiteSpace(Model.CoverImageUrl))
 {
-<img class="img-fluid mb-3" src="@Model.CoverImageUrl" alt="@Model.Title" />
+    <img class="img-fluid mb-3 rounded" src="@Model.CoverImageUrl" alt="@Model.Title" />
 }
+
 <p>@Model.Body</p>
+
+<a class="btn btn-secondary mt-2" asp-controller="Articles" asp-action="Index">Ќазад</a>
