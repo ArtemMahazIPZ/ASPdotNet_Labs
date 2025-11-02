@@ -1,0 +1,56 @@
+﻿@model NewsPortal.Controllers.HomeViewModel
+@{
+    ViewData["Title"] = "Latest News";
+}
+<div class="row">
+    <aside class="col-md-3">
+        <div class="list-group mb-4">
+            <a class="list-group-item list-group-item-action @(Model.ActiveCategoryId == null ? "active" : "")"
+               asp-controller="Home" asp-action="Index">All</a>
+            @foreach (var c in Model.Categories)
+            {
+                <a class="list-group-item list-group-item-action @(Model.ActiveCategoryId == c.Id ? "active" : "")"
+                   asp-controller="Home" asp-action="Index" asp-route-categoryId="@c.Id">@c.Name</a>
+            }
+        </div>
+
+        <div class="card">
+            <div class="card-header">Recently viewed</div>
+            <ul class="list-group list-group-flush">
+                @if (!Model.RecentlyViewed.Any())
+                {
+                    <li class="list-group-item text-muted">No items yet.</li>
+                }
+                else
+                {
+                    @foreach (var r in Model.RecentlyViewed)
+                    {
+                        <li class="list-group-item p-2">
+                            <!-- use the public "news" route so it goes to Details and records history -->
+                            <a asp-route="news" asp-route-id="@r.Id">@r.Title</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </aside>
+
+    <section class="col-md-9">
+        <h2 class="mb-3">Latest News</h2>
+        @foreach (var a in Model.Articles)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title mb-1">
+                        <a asp-route="news" asp-route-id="@a.Id">@a.Title</a>
+                    </h5>
+                    <div class="text-muted mb-2">
+                        @(a.Author ?? "—") • @a.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") • @a.CategoryName
+                    </div>
+                    <p class="card-text">@a.Excerpt</p>
+                    <a class="btn btn-primary" asp-route="news" asp-route-id="@a.Id">Read more</a>
+                </div>
+            </div>
+        }
+    </section>
+</div>
