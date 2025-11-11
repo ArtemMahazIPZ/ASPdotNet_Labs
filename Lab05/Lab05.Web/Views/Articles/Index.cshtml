@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Lab05.Data.Models.Article>
+@{
+    ViewData["Title"] = "Articles (admin)";
+}
+<h2>Articles</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create new</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Published</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Title</td>
+                <td>@a.Category?.Name</td>
+                <td>@a.PublishedAt.ToLocalTime()</td>
+                <td class="text-end">
+                    <a asp-action="Details" asp-route-id="@a.Id" class="btn btn-sm btn-outline-secondary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@a.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@a.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

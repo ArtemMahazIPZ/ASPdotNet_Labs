@@ -1,0 +1,14 @@
+﻿@model Lab05.Data.Models.Article
+@{
+    ViewData["Title"] = Model.Title;
+}
+<a asp-controller="Home" asp-action="Index" class="btn btn-link">&larr; Back to list</a>
+<h2>@Model.Title</h2>
+<p class="text-muted">
+    @(Model.Author ?? "—") • @Model.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm") • @Model.Category?.Name
+</p>
+@if (!string.IsNullOrWhiteSpace(Model.CoverImageUrl))
+{
+    <img src="@Model.CoverImageUrl" class="img-fluid mb-3" />
+}
+<p>@Model.Content</p>
